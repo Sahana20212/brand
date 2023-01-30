@@ -29,6 +29,6 @@ public class BrandController {
 		List<Brand> a=brandservice.fetchBrandList();
 		return a;	
 	}
-	
+    	
 
 }

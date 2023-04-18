@@ -29,7 +29,7 @@ public class BrandControllerTest {
 		
 		when(brandService.saveBrand(getTestBrandData())).thenReturn(getTestBrandData());
 		Brand b=brandContoller.saveBrand(getTestBrandData());
-		assertEquals(b.getBrand_name(), "Apple");
+		assertEquals(b.getName(), "Apple");
 	}
 
 	@Test
@@ -37,16 +37,16 @@ public class BrandControllerTest {
 		
 		when(brandService.fetchBrandList()).thenReturn(getTestBrandDataFetch());
 		List<Brand> b=brandContoller.fetchBrandList();
-		assertEquals(b.get(1).getBrand_name(), "Apple");
+		assertEquals(b.get(1).getName(), "Apple");
 	}
 	Brand getTestBrandData() {
-		return Brand.builder().brand_id(0).brand_name("Apple").build();
+		return Brand.builder().id(0).name("Apple").build();
 		
 	}
 	
 	List<Brand> getTestBrandDataFetch() {
-		Brand b1= Brand.builder().brand_id(0).brand_name("Apple").build();
-		Brand b2=Brand.builder().brand_id(1).brand_name("oranges").build();
+		Brand b1= Brand.builder().id(0).name("Apple").build();
+		Brand b2=Brand.builder().id(1).name("oranges").build();
 		List<Brand> l=new ArrayList<Brand>();
 		l.add(b2);
 		l.add(b1);

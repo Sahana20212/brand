@@ -19,17 +19,29 @@ public class BrandService {
     Logger log=LoggerFactory.getLogger(BrandService.class);
 
 	public Brand saveBrand(Brand brand) {
+		log.info("saving brand info");
 		
 		return brandrepository.save(brand);
 	}
 	
 	public List<Brand> fetchBrandList() {
+		log.info("entering fetchall method");
 		return brandrepository.findAll();
 	}
 	
 	public Optional<Brand> fetchBrandById(Long brandId) throws BrandNotFoundException{
 		
 		Optional<Brand> brand=brandrepository.findById(brandId);
+		if(!brand.isPresent()) {
+            throw new BrandNotFoundException("Brand Not Available");
+        }
+       
+             return brand;
+	}
+	
+public Optional<Brand> fetchBrandByName(String brandName) throws BrandNotFoundException{
+		
+		Optional<Brand> brand=brandrepository.findByName(brandName);
 		if(!brand.isPresent()) {
             throw new BrandNotFoundException("Brand Not Available");
         }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecomm.brand.entity.Brand;
@@ -28,7 +29,7 @@ public class BrandController {
 	@PostMapping(path="/brand")
 	public Brand saveBrand(@Valid @RequestBody Brand brand ) {
 		logger.info("enterting into brand controller Save Brand");
-		brand.getBrand_name().toCharArray();
+		brand.getName().toCharArray();
 		return brandservice.saveBrand(brand);
 	}
 	
@@ -43,6 +44,10 @@ public class BrandController {
 	 @GetMapping("/brand/{id}")
 	    public Optional<Brand> fetchBrandById(@PathVariable("id") Long brandId) throws BrandNotFoundException {
 	    return brandservice.fetchBrandById(brandId);
+	 }
+	 @GetMapping("/getbrand")
+	    public Optional<Brand> fetchBrandByName(@RequestParam("brandname") String brandName) throws BrandNotFoundException {
+	    return brandservice.fetchBrandByName(brandName);
 	 }
 
 }

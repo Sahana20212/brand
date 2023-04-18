@@ -28,14 +28,14 @@ public class BrandServiceTest {
 
 		when(brandRepo.findAll()).thenReturn(getTestBrandData());
 		List<Brand> b=brandService.fetchBrandList();
-		assertEquals(b.get(1).getBrand_name(), "Apple");
-		assertEquals(b.get(0).getBrand_name(), "oranges");
+		assertEquals(b.get(1).getName(), "Apple");
+		assertEquals(b.get(0).getName(), "oranges");
 	}
 	
 	
 	List<Brand> getTestBrandData() {
-		Brand b1= Brand.builder().brand_id(0).brand_name("Apple").build();
-		Brand b2=Brand.builder().brand_id(1).brand_name("oranges").build();
+		Brand b1= Brand.builder().id(0).name("Apple").build();
+		Brand b2=Brand.builder().id(1).name("oranges").build();
 		List<Brand> l=new ArrayList<Brand>();
 		l.add(b2);
 		l.add(b1);
@@ -48,12 +48,12 @@ public class BrandServiceTest {
 
 		when(brandRepo.save(saveTestBrandData())).thenReturn(saveTestBrandData());
 		Brand b=brandService.saveBrand(saveTestBrandData());
-		assertEquals(b.getBrand_name(), "Apple");
+		assertEquals(b.getName(), "Apple");
 		
 	}
     
 	Brand saveTestBrandData() {
-		Brand b1= Brand.builder().brand_id(0).brand_name("Apple").build();
+		Brand b1= Brand.builder().id(0).name("Apple").build();
 		return b1;
 	}
 	
